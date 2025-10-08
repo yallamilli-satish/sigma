@@ -1,0 +1,5865 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIGMA Sea Foods - Premium Seafood v7</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e293b 50%,
+          #334155 100%
+        );
+        color: white;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Animated wave background */
+      .wave-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 80%,
+            rgba(59, 130, 246, 0.2) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(249, 115, 22, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 40%,
+            rgba(16, 185, 129, 0.1) 0%,
+            transparent 50%
+          );
+        z-index: -2;
+      }
+
+      .wave-animation {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 200%;
+        height: 200px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C300,120 600,0 900,60 C1050,90 1150,30 1200,60 L1200,120 L0,120 Z' fill='%23059669' fill-opacity='0.1'/%3E%3C/svg%3E")
+          repeat-x;
+        animation: wave 8s linear infinite;
+        z-index: -1;
+      }
+
+      @keyframes wave {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* Header */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 20px 50px;
+        background: rgba(15, 23, 42, 0.9);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #3b82f6, #f97316);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .logo-icon:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+      }
+
+      .logo-icon svg {
+        width: 28px;
+        height: 28px;
+        fill: white;
+        z-index: 1;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-name {
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: white;
+        margin: 0;
+      }
+
+      .brand-subtitle {
+        font-size: 12px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0;
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+      }
+
+      .nav-link {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 10px 0;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #3b82f6;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #3b82f6, #f97316);
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 4px;
+      }
+
+      .menu-line {
+        width: 25px;
+        height: 3px;
+        background: white;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 100px 50px 50px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Smoke Effect */
+      .smoke-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 3;
+      }
+
+      .smoke {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 30%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        filter: blur(20px);
+        animation: smokeFloat 15s infinite linear;
+        opacity: 0;
+      }
+
+      .smoke:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+        animation-duration: 12s;
+      }
+
+      .smoke:nth-child(2) {
+        top: 60%;
+        left: 80%;
+        animation-delay: 3s;
+        animation-duration: 18s;
+        width: 150px;
+        height: 150px;
+      }
+
+      .smoke:nth-child(3) {
+        top: 40%;
+        left: 20%;
+        animation-delay: 6s;
+        animation-duration: 20s;
+        width: 180px;
+        height: 180px;
+      }
+
+      .smoke:nth-child(4) {
+        top: 80%;
+        left: 60%;
+        animation-delay: 9s;
+        animation-duration: 16s;
+        width: 120px;
+        height: 120px;
+      }
+
+      .smoke:nth-child(5) {
+        top: 10%;
+        left: 70%;
+        animation-delay: 12s;
+        animation-duration: 14s;
+        width: 160px;
+        height: 160px;
+      }
+
+      .smoke:nth-child(6) {
+        top: 70%;
+        left: 15%;
+        animation-delay: 15s;
+        animation-duration: 22s;
+        width: 140px;
+        height: 140px;
+      }
+
+      @keyframes smokeFloat {
+        0% {
+          transform: translateY(100vh) translateX(0px) rotate(0deg) scale(0.5);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.6;
+          transform: translateY(-20vh) translateX(50px) rotate(180deg) scale(1);
+        }
+        90% {
+          opacity: 0.2;
+        }
+        100% {
+          transform: translateY(-120vh) translateX(-30px) rotate(360deg)
+            scale(0.3);
+          opacity: 0;
+        }
+      }
+
+      /* Enhanced smoke particles */
+      .smoke-particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 4;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: particleFloat 8s infinite linear;
+        opacity: 0;
+      }
+
+      .particle:nth-child(odd) {
+        background: rgba(59, 130, 246, 0.2);
+      }
+
+      .particle:nth-child(even) {
+        background: rgba(249, 115, 22, 0.2);
+      }
+
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(100vh) translateX(0px);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(-20vh) translateX(100px);
+          opacity: 0;
+        }
+      }
+
+      .herobg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url(images/herobg.png);
+        background-size: fit;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 1;
+        z-index: 1;
+      }
+
+      .herobg::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.7) 0%,
+          rgba(30, 41, 59, 0.6) 50%,
+          rgba(51, 65, 85, 0.7) 100%
+        );
+        z-index: 2;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        z-index: 10;
+        position: relative;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #3b82f6 50%,
+          #f97316 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        opacity: 1;
+        position: relative;
+      }
+
+      .hero-subtitle {
+        font-size: 1.5rem;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 30px;
+        letter-spacing: 1px;
+      }
+
+      .hero-image {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 30px;
+        background: linear-gradient(135deg, #3b82f6, #f97316);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        animation: shrimpFloat 3s ease-in-out infinite;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .hero-image:hover {
+        transform: scale(1.1);
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+      }
+
+      .hero-image svg {
+        width: 120px;
+        height: 120px;
+        fill: white;
+        z-index: 1;
+      }
+
+      @keyframes shrimpFloat {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(5deg);
+        }
+      }
+
+      .hero-quote {
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.9);
+        font-style: italic;
+        margin-bottom: 40px;
+        padding: 20px;
+        border-left: 4px solid #3b82f6;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        color: white;
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: white;
+        transform: translateY(-3px);
+      }
+
+      /* Products Section */
+      .products {
+        padding: 120px 50px;
+        background: linear-gradient(
+          135deg,
+          rgba(30, 41, 59, 0.9) 0%,
+          rgba(15, 23, 42, 0.8) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .products::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cpath d='M30,5 Q45,15 55,30 Q45,45 30,55 Q15,45 5,30 Q15,15 30,5' fill='none' stroke='%23f97316' stroke-width='0.5' opacity='0.05'/%3E%3C/svg%3E")
+          repeat;
+        animation: productPatternMove 25s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes productPatternMove {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        100% {
+          transform: translate(60px, 60px) rotate(360deg);
+        }
+      }
+
+      .products-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .products-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .products-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 25px;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #f97316 50%,
+          #3b82f6 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+      }
+
+      .products-subtitle {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 40px;
+      }
+
+      .product-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 25px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.4s ease;
+        cursor: pointer;
+        position: relative;
+        transform: translateY(0);
+      }
+
+      .product-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 25px 50px rgba(249, 115, 22, 0.2);
+        border-color: rgba(249, 115, 22, 0.3);
+      }
+
+      .product-image-container {
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+      }
+
+      .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.4s ease;
+      }
+
+      .product-card:hover .product-image {
+        transform: scale(1.1);
+      }
+
+      .product-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(249, 115, 22, 0.8),
+          rgba(59, 130, 246, 0.8)
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.3s ease;
+        color: white;
+        font-weight: 600;
+        gap: 10px;
+      }
+
+      .product-card:hover .product-overlay {
+        opacity: 1;
+      }
+
+      .product-overlay i {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        animation: bounceIcon 2s ease-in-out infinite;
+      }
+
+      @keyframes bounceIcon {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .product-info {
+        padding: 30px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .product-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 15px;
+        position: relative;
+      }
+
+      .product-name::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, #f97316, #3b82f6);
+        border-radius: 2px;
+        transition: width 0.3s ease;
+      }
+
+      .product-card:hover .product-name::after {
+        width: 100px;
+      }
+
+      .product-description {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-size: 1rem;
+      }
+
+      .product-specs {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .spec-item {
+        background: rgba(249, 115, 22, 0.2);
+        color: #f97316;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border: 1px solid rgba(249, 115, 22, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .product-card:hover .spec-item {
+        background: rgba(249, 115, 22, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 120px 50px;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.8) 0%,
+          rgba(30, 41, 59, 0.6) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .features::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,20 Q50,5 80,20 Q95,50 80,80 Q50,95 20,80 Q5,50 20,20' fill='none' stroke='%233b82f6' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E")
+          repeat;
+        animation: patternMove 20s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes patternMove {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(100px, 100px);
+        }
+      }
+
+      .features-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .section-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 20px;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #3b82f6 50%,
+          #f97316 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+      }
+
+      .section-subtitle {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 40px;
+        margin-bottom: 60px;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 25px;
+        padding: 50px 40px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.4s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .feature-card:hover::before {
+        left: 100%;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2);
+        border-color: rgba(59, 130, 246, 0.3);
+      }
+
+      .feature-icon {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #3b82f6, #f97316);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 30px;
+        font-size: 2.5rem;
+        color: white;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover .feature-icon {
+        transform: scale(1.1) rotate(10deg);
+        box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+      }
+
+      .feature-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: white;
+        position: relative;
+      }
+
+      .feature-description {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.7;
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+      }
+
+      .feature-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 30px;
+        padding-top: 25px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #3b82f6;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .features-cta {
+        text-align: center;
+        margin-top: 80px;
+      }
+
+      .features-cta-text {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 30px;
+      }
+
+      .learn-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 40px;
+        background: linear-gradient(135deg, #059669, #10b981);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(5, 150, 105, 0.3);
+      }
+
+      .learn-more-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(5, 150, 105, 0.4);
+        background: linear-gradient(135deg, #047857, #059669);
+      }
+
+      /* Business Operating Model Section */
+      .business-model {
+        padding: 120px 50px;
+        background: linear-gradient(
+          135deg,
+          rgba(30, 41, 59, 0.95) 0%,
+          rgba(51, 65, 85, 0.9) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .business-model::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,10 Q70,25 85,50 Q70,75 50,90 Q30,75 15,50 Q30,25 50,10' fill='none' stroke='%2310b981' stroke-width='0.4' opacity='0.08'/%3E%3C/svg%3E")
+          repeat;
+        animation: businessModelPattern 40s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes businessModelPattern {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        100% {
+          transform: translate(100px, 100px) rotate(360deg);
+        }
+      }
+
+      .business-model-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .business-model-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .business-model-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 30px;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #10b981 50%,
+          #059669 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+      }
+
+      .business-model-subtitle {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      .business-model-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 50px;
+      }
+
+      .model-card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 25px;
+        padding: 50px 40px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.5s ease;
+        cursor: pointer;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+
+      .model-bg-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.05;
+        background-size: 30px 30px;
+        transition: all 0.5s ease;
+        z-index: 1;
+      }
+
+      .traceable-card .model-bg-pattern {
+        background-image: radial-gradient(circle, #3b82f6 2px, transparent 2px);
+      }
+
+      .sustainable-card .model-bg-pattern {
+        background-image: radial-gradient(circle, #10b981 2px, transparent 2px);
+      }
+
+      .ethical-card .model-bg-pattern {
+        background-image: radial-gradient(circle, #f59e0b 2px, transparent 2px);
+      }
+
+      .model-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 30px 60px rgba(16, 185, 129, 0.3);
+        border-color: rgba(16, 185, 129, 0.5);
+      }
+
+      .traceable-card:hover {
+        box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3);
+        border-color: rgba(59, 130, 246, 0.5);
+      }
+
+      .ethical-card:hover {
+        box-shadow: 0 30px 60px rgba(245, 158, 11, 0.3);
+        border-color: rgba(245, 158, 11, 0.5);
+      }
+
+      .model-card:hover .model-bg-pattern {
+        opacity: 0.1;
+        transform: scale(1.1);
+      }
+
+      .model-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+
+      .model-icon {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 30px;
+        font-size: 2.5rem;
+        color: white;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .traceable-card .model-icon {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      }
+
+      .sustainable-card .model-icon {
+        background: linear-gradient(135deg, #10b981, #059669);
+      }
+
+      .ethical-card .model-icon {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+      }
+
+      .model-card:hover .model-icon {
+        transform: scale(1.15) rotate(10deg);
+        box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
+      }
+
+      .model-title {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+      }
+
+      .model-title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        border-radius: 2px;
+        transition: width 0.4s ease;
+      }
+
+      .traceable-card .model-title::after {
+        background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+      }
+
+      .sustainable-card .model-title::after {
+        background: linear-gradient(90deg, #10b981, #059669);
+      }
+
+      .ethical-card .model-title::after {
+        background: linear-gradient(90deg, #f59e0b, #d97706);
+      }
+
+      .model-card:hover .model-title::after {
+        width: 100px;
+      }
+
+      .model-description {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 30px;
+        font-weight: 400;
+      }
+
+      .model-features {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 30px;
+      }
+
+      .feature-point {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .feature-point:last-child {
+        border-bottom: none;
+      }
+
+      .feature-point i {
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .traceable-card .feature-point i {
+        color: #3b82f6;
+      }
+
+      .sustainable-card .feature-point i {
+        color: #10b981;
+      }
+
+      .ethical-card .feature-point i {
+        color: #f59e0b;
+      }
+
+      .model-card:hover .feature-point {
+        transform: translateX(5px);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .model-card:hover .feature-point i {
+        transform: scale(1.2);
+      }
+
+      .feature-point span {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+
+      /* What We Do Section */
+      .what-we-do {
+        padding: 120px 50px;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.95) 0%,
+          rgba(30, 41, 59, 0.9) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .what-we-do::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60,20 Q90,30 100,60 Q90,90 60,100 Q30,90 20,60 Q30,30 60,20' fill='none' stroke='%23059669' stroke-width='0.3' opacity='0.06'/%3E%3C/svg%3E")
+          repeat;
+        animation: whatWeDoPattern 35s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes whatWeDoPattern {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        100% {
+          transform: translate(120px, 120px) rotate(360deg);
+        }
+      }
+
+      .what-we-do-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .what-we-do-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .what-we-do-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 30px;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #059669 50%,
+          #3b82f6 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+        position: relative;
+      }
+
+      .what-we-do-subtitle {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      .what-we-do-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 50px;
+      }
+
+      .service-card {
+        position: relative;
+        height: 400px;
+        border-radius: 25px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.5s ease;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .processing-card {
+        background-image: url("https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=600&fit=crop&crop=center");
+      }
+
+      .supply-card {
+        background-image: url("https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&h=600&fit=crop&crop=center");
+      }
+
+      .service-bg-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(5, 150, 105, 0.85) 0%,
+          rgba(59, 130, 246, 0.75) 100%
+        );
+        transition: all 0.5s ease;
+        z-index: 1;
+      }
+
+      .service-card:hover .service-bg-overlay {
+        background: linear-gradient(
+          135deg,
+          rgba(5, 150, 105, 0.95) 0%,
+          rgba(59, 130, 246, 0.85) 100%
+        );
+      }
+
+      .service-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        padding: 50px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        color: white;
+        transition: all 0.5s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 30px 60px rgba(5, 150, 105, 0.3);
+        border-color: rgba(5, 150, 105, 0.5);
+      }
+
+      .service-card:hover .service-content {
+        transform: translateX(10px);
+      }
+
+      .service-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        font-size: 2.2rem;
+        color: white;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .service-card:hover .service-icon {
+        transform: scale(1.15) rotate(10deg);
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+      }
+
+      .service-title {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .service-title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.5));
+        border-radius: 2px;
+        transition: width 0.4s ease;
+      }
+
+      .service-card:hover .service-title::after {
+        width: 120px;
+      }
+
+      .service-description {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 30px;
+        font-weight: 400;
+        transition: all 0.3s ease;
+      }
+
+      .service-card:hover .service-description {
+        color: white;
+        transform: translateY(-5px);
+      }
+
+      .service-arrow {
+        margin-top: auto;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: white;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .service-card:hover .service-arrow {
+        transform: translateX(10px) scale(1.1);
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+      }
+
+      /* Our Global Markets Section */
+      .global-markets {
+        padding: 120px 50px;
+        background: linear-gradient(
+          135deg,
+          rgba(51, 65, 85, 0.95) 0%,
+          rgba(30, 41, 59, 0.9) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .global-markets::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,10 Q70,25 85,50 Q70,75 50,90 Q30,75 15,50 Q30,25 50,10' fill='none' stroke='%233b82f6' stroke-width='0.4' opacity='0.08'/%3E%3C/svg%3E")
+          repeat;
+        animation: globalMarketsPattern 35s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes globalMarketsPattern {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        100% {
+          transform: translate(100px, 100px) rotate(360deg);
+        }
+      }
+
+      .global-markets-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .global-markets-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .global-markets-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 30px;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #3b82f6 50%,
+          #f97316 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+      }
+
+      .global-markets-subtitle {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      .world-map-container {
+        position: relative;
+        width: 1080px;
+        height: 720px;
+        max-width: 100%;
+        margin: 0 auto 60px;
+        background-size: cover;
+        background-image: url(images/map.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 25px;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        cursor: pointer;
+        transition: all 0.5s ease;
+        overflow: hidden;
+      }
+
+      .world-map-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.3),
+          rgba(249, 115, 22, 0.2)
+        );
+        opacity: 0.8;
+        transition: opacity 0.5s ease;
+        z-index: 1;
+      }
+
+      .world-map-container:hover {
+        transform: scale(1.02);
+        box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3);
+        border-color: rgba(59, 130, 246, 0.4);
+      }
+
+      .world-map-container:hover::before {
+        opacity: 0.6;
+      }
+
+      .map-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        color: white;
+        text-align: center;
+        padding: 40px;
+      }
+
+      .map-icon {
+        width: 100px;
+        height: 100px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        font-size: 2.5rem;
+        color: white;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .world-map-container:hover .map-icon {
+        transform: scale(1.15) rotate(10deg);
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+      }
+
+      .map-title {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .map-subtitle {
+        font-size: 1.2rem;
+        font-weight: 400;
+        opacity: 0.9;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .market-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+      }
+
+      .market-stats .stat-item {
+        background: rgba(59, 130, 246, 0.1);
+        border-radius: 20px;
+        padding: 30px 25px;
+        text-align: center;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .market-stats .stat-item:hover {
+        transform: translateY(-5px);
+        background: rgba(59, 130, 246, 0.15);
+        box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+        border-color: rgba(59, 130, 246, 0.4);
+      }
+
+      .market-stats .stat-number {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #3b82f6;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .market-stats .stat-label {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 500;
+      }
+
+      /* Our Brands Section */
+      .brands {
+        padding: 120px 50px;
+        background: linear-gradient(
+          135deg,
+          rgba(30, 41, 59, 0.95) 0%,
+          rgba(51, 65, 85, 0.9) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .brands::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,10 Q70,25 85,50 Q70,75 50,90 Q30,75 15,50 Q30,25 50,10' fill='none' stroke='%23f97316' stroke-width='0.4' opacity='0.08'/%3E%3C/svg%3E")
+          repeat;
+        animation: brandsPattern 30s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes brandsPattern {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        100% {
+          transform: translate(100px, 100px) rotate(360deg);
+        }
+      }
+
+      .brands-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .brands-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .brands-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 30px;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #f97316 50%,
+          #3b82f6 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+      }
+
+      .brands-subtitle {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      .brands-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+      }
+
+      .brand-card {
+        position: relative;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        cursor: pointer;
+        transition: all 0.5s ease;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .brand-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(249, 115, 22, 0.1),
+          rgba(59, 130, 246, 0.1)
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 1;
+      }
+
+      .brand-card:hover::before {
+        opacity: 1;
+      }
+
+      .brand-card:hover {
+        transform: translateY(-15px) scale(1.05);
+        box-shadow: 0 25px 50px rgba(249, 115, 22, 0.3);
+        border-color: rgba(249, 115, 22, 0.4);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .brand-shine {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.6s ease;
+        z-index: 2;
+      }
+
+      .brand-card:hover .brand-shine {
+        left: 100%;
+      }
+
+      .brand-content {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .brand-card:hover .brand-content {
+        transform: translateY(-5px);
+      }
+
+      .brand-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #f97316, #3b82f6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 2rem;
+        color: white;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .brand-icon::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .brand-card:hover .brand-icon::before {
+        opacity: 1;
+      }
+
+      .brand-card:hover .brand-icon {
+        transform: scale(1.15) rotate(10deg);
+        box-shadow: 0 15px 30px rgba(249, 115, 22, 0.4);
+      }
+
+      .brand-name {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .brand-card:hover .brand-name {
+        color: #f97316;
+        text-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+        transform: scale(1.05);
+      }
+
+      /* Certificates Section */
+      .certificates {
+        padding: 120px 50px;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.95) 0%,
+          rgba(30, 41, 59, 0.9) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .certificates::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,10 Q70,25 85,50 Q70,75 50,90 Q30,75 15,50 Q30,25 50,10' fill='none' stroke='%23059669' stroke-width='0.4' opacity='0.08'/%3E%3C/svg%3E")
+          repeat;
+        animation: certificatesPattern 25s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes certificatesPattern {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        100% {
+          transform: translate(100px, 100px) rotate(360deg);
+        }
+      }
+
+      .certificates-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .certificates-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .certificates-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 30px;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #059669 50%,
+          #3b82f6 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+      }
+
+      .certificates-subtitle {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      .certificates-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .certificate-card {
+        position: relative;
+        height: 180px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        cursor: pointer;
+        transition: all 0.5s ease;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .certificate-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(5, 150, 105, 0.1),
+          rgba(59, 130, 246, 0.1)
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 1;
+      }
+
+      .certificate-card:hover::before {
+        opacity: 1;
+      }
+
+      .certificate-card:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(5, 150, 105, 0.3);
+        border-color: rgba(5, 150, 105, 0.4);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .certificate-shine {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.6s ease;
+        z-index: 2;
+      }
+
+      .certificate-card:hover .certificate-shine {
+        left: 100%;
+      }
+
+      .certificate-content {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .certificate-card:hover .certificate-content {
+        transform: translateY(-3px);
+      }
+
+      .certificate-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+        margin: 0 auto 15px;
+        transition: all 0.4s ease;
+        object-fit: cover;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .certificate-card:hover .certificate-image {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 10px 25px rgba(5, 150, 105, 0.4);
+        border-color: rgba(5, 150, 105, 0.5);
+      }
+
+      .certificate-name {
+        font-size: 1rem;
+        font-weight: 700;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 0;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .certificate-card:hover .certificate-name {
+        color: #059669;
+        text-shadow: 0 0 15px rgba(5, 150, 105, 0.5);
+        transform: scale(1.05);
+      }
+
+      /* Company Section */
+      .company {
+        padding: 120px 50px;
+        background: linear-gradient(
+          135deg,
+          rgba(51, 65, 85, 0.9) 0%,
+          rgba(30, 41, 59, 0.8) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .company::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M40,10 Q60,20 70,40 Q60,60 40,70 Q20,60 10,40 Q20,20 40,10' fill='none' stroke='%2310b981' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E")
+          repeat;
+        animation: companyPatternMove 30s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes companyPatternMove {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        100% {
+          transform: translate(80px, 80px) rotate(360deg);
+        }
+      }
+
+      .company-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .company-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .company-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 30px;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #10b981 50%,
+          #3b82f6 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+      }
+
+      .company-intro {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .company-lead {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.6;
+        font-weight: 400;
+        padding: 25px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        border-left: 4px solid #10b981;
+        backdrop-filter: blur(10px);
+      }
+
+      .company-content {
+        display: grid;
+        gap: 60px;
+      }
+
+      .company-story {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+      }
+
+      .story-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 40px 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.4s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .story-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(16, 185, 129, 0.1),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .story-card:hover::before {
+        left: 100%;
+      }
+
+      .story-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+        border-color: rgba(16, 185, 129, 0.3);
+      }
+
+      .story-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #10b981, #3b82f6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        font-size: 2rem;
+        color: white;
+        transition: all 0.3s ease;
+      }
+
+      .story-card:hover .story-icon {
+        transform: scale(1.1) rotate(10deg);
+        box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+      }
+
+      .story-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 15px;
+        position: relative;
+      }
+
+      .story-title::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(90deg, #10b981, #3b82f6);
+        border-radius: 2px;
+        transition: width 0.3s ease;
+      }
+
+      .story-card:hover .story-title::after {
+        width: 80px;
+      }
+
+      .story-text {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.7;
+        font-size: 1rem;
+      }
+
+      .company-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .stat-card {
+        background: rgba(16, 185, 129, 0.1);
+        border-radius: 15px;
+        padding: 30px 20px;
+        text-align: center;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        background: rgba(16, 185, 129, 0.15);
+        box-shadow: 0 15px 30px rgba(16, 185, 129, 0.2);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #10b981;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .stat-label {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 500;
+      }
+
+      /* Floating elements */
+      .floating-element {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .floating-element:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .floating-element:nth-child(2) {
+        top: 60%;
+        right: 10%;
+        animation-delay: 2s;
+      }
+
+      .floating-element:nth-child(3) {
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+        }
+      }
+
+      /* Footer */
+      .footer {
+        padding: 80px 50px 0;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.98) 0%,
+          rgba(30, 41, 59, 0.95) 100%
+        );
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cpath d='M30,5 Q45,15 55,30 Q45,45 30,55 Q15,45 5,30 Q15,15 30,5' fill='none' stroke='%233b82f6' stroke-width='0.3' opacity='0.05'/%3E%3C/svg%3E")
+          repeat;
+        animation: footerPattern 25s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes footerPattern {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        100% {
+          transform: translate(60px, 60px) rotate(360deg);
+        }
+      }
+
+      .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 50px;
+        margin-bottom: 60px;
+      }
+
+      .footer-brand {
+        max-width: 300px;
+      }
+
+      .footer-logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .footer-logo {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #3b82f6, #f97316);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .footer-logo:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+      }
+
+      .footer-logo span {
+        font-size: 32px;
+        font-weight: 900;
+        color: white;
+        z-index: 1;
+      }
+
+      .footer-brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer-brand-name {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: white;
+        margin: 0;
+      }
+
+      .footer-brand-subtitle {
+        font-size: 14px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0;
+      }
+
+      .footer-description {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.7;
+        font-size: 1rem;
+        margin-bottom: 30px;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icon {
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .social-icon:hover {
+        background: linear-gradient(135deg, #3b82f6, #f97316);
+        color: white;
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        border-color: transparent;
+      }
+
+      .footer-section {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 25px;
+        position: relative;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .footer-title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, #3b82f6, #f97316);
+        border-radius: 2px;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-link {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        padding: 8px 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .footer-link::before {
+        content: "→";
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.3s ease;
+        color: #3b82f6;
+      }
+
+      .footer-link:hover::before {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .footer-link:hover {
+        color: #3b82f6;
+        transform: translateX(15px);
+      }
+
+      .footer-contact {
+        max-width: 350px;
+      }
+
+      .contact-item {
+        margin-bottom: 25px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .contact-item:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+        border-color: rgba(59, 130, 246, 0.3);
+      }
+
+      .contact-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #3b82f6;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .contact-text {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      .contact-phone {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .phone-number {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 5px 0;
+      }
+
+      .phone-number:hover {
+        color: #3b82f6;
+        transform: translateX(5px);
+      }
+
+      .contact-email {
+        color: #f97316;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .contact-email:hover {
+        color: #3b82f6;
+        text-decoration: underline;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 40px 0;
+        text-align: center;
+      }
+
+      .footer-bottom-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .copyright {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+      }
+
+      .footer-tagline {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1rem;
+        font-weight: 500;
+        font-style: italic;
+      }
+
+      .footer-legal {
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-legal a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      .footer-legal a:hover {
+        color: #3b82f6;
+        text-decoration: underline;
+      }
+
+      /* Water Drop Wave Effect Styles */
+      .water-ripple {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+      }
+
+      .ripple-wave {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(59, 130, 246, 0.6);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: rippleExpand 1.5s ease-out forwards;
+      }
+
+      .ripple-wave:nth-child(2) {
+        border-color: rgba(249, 115, 22, 0.5);
+        animation-duration: 1.8s;
+      }
+
+      .ripple-wave:nth-child(3) {
+        border-color: rgba(16, 185, 129, 0.4);
+        animation-duration: 2.1s;
+      }
+
+      @keyframes rippleExpand {
+        0% {
+          width: 20px;
+          height: 20px;
+          opacity: 1;
+          border-width: 3px;
+        }
+        50% {
+          width: 150px;
+          height: 150px;
+          opacity: 0.6;
+          border-width: 2px;
+        }
+        100% {
+          width: 300px;
+          height: 300px;
+          opacity: 0;
+          border-width: 1px;
+        }
+      }
+
+      .water-droplet {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: radial-gradient(
+          circle,
+          rgba(59, 130, 246, 0.8) 0%,
+          rgba(59, 130, 246, 0.4) 70%,
+          transparent 100%
+        );
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: dropletSplash 1.2s ease-out forwards;
+      }
+
+      .water-droplet:nth-child(odd) {
+        background: radial-gradient(
+          circle,
+          rgba(249, 115, 22, 0.7) 0%,
+          rgba(249, 115, 22, 0.3) 70%,
+          transparent 100%
+        );
+      }
+
+      @keyframes dropletSplash {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+        30% {
+          transform: translate(
+              calc(-50% + var(--drop-x, 0px)),
+              calc(-50% + var(--drop-y, 0px))
+            )
+            scale(1.2);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translate(
+              calc(-50% + var(--drop-x, 0px)),
+              calc(-50% + var(--drop-y, 0px))
+            )
+            scale(0.3);
+          opacity: 0;
+        }
+      }
+
+      /* Enhanced Click Effects for Interactive Elements */
+      .clickable-element {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .clickable-element::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: radial-gradient(
+          circle,
+          rgba(59, 130, 246, 0.3) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.6s ease;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .clickable-element.water-clicked::before {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+      }
+
+      /* Quote Popup Styles */
+      .quote-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .quote-popup.active {
+        opacity: 1;
+      }
+
+      .quote-popup-content {
+        background: linear-gradient(
+          135deg,
+          rgba(30, 41, 59, 0.95) 0%,
+          rgba(51, 65, 85, 0.9) 100%
+        );
+        border-radius: 25px;
+        padding: 50px 40px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        border: 2px solid rgba(59, 130, 246, 0.3);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        position: relative;
+        transform: scale(0.8) translateY(50px);
+        transition: all 0.3s ease;
+      }
+
+      .quote-popup.active .quote-popup-content {
+        transform: scale(1) translateY(0);
+      }
+
+      .quote-popup-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .quote-popup-title {
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin-bottom: 15px;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #3b82f6 50%,
+          #f97316 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .quote-popup-subtitle {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 0;
+      }
+
+      .quote-close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 50%;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .quote-close-btn:hover {
+        background: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+        transform: scale(1.1);
+      }
+
+      .quote-form {
+        display: grid;
+        gap: 25px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group.full-width {
+        grid-column: 1 / -1;
+      }
+
+      .form-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #3b82f6;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .form-label .required {
+        color: #ef4444;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        padding: 15px 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: #3b82f6;
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+      }
+
+      .form-input::placeholder,
+      .form-textarea::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .form-select {
+        cursor: pointer;
+      }
+
+      .form-select option {
+        background: #1e293b;
+        color: white;
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .quote-submit-btn {
+        padding: 18px 40px;
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .quote-submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+      }
+
+      .quote-submit-btn:active {
+        transform: translateY(-1px);
+      }
+
+      .quote-info {
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: 15px;
+        padding: 20px;
+        margin-top: 30px;
+      }
+
+      .quote-info-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #10b981;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .quote-info-text {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      /* Quote Notification Styles */
+      .quote-notification {
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        width: 400px;
+        max-width: calc(100vw - 60px);
+        background: rgba(30, 41, 59, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        z-index: 10002;
+        transform: translateX(450px);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        overflow: hidden;
+      }
+
+      .quote-notification.show {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .quote-notification.hide {
+        transform: translateX(450px);
+        opacity: 0;
+      }
+
+      .notification-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 25px;
+        position: relative;
+      }
+
+      .notification-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .success-icon {
+        background: linear-gradient(135deg, #10b981, #059669);
+        animation: successPulse 2s ease-in-out infinite;
+      }
+
+      .error-icon {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        animation: errorShake 0.5s ease-in-out;
+      }
+
+      @keyframes successPulse {
+        0%,
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+        }
+      }
+
+      @keyframes errorShake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        }
+        75% {
+          transform: translateX(5px);
+        }
+      }
+
+      .notification-text {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .notification-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 8px;
+        line-height: 1.2;
+      }
+
+      .notification-message {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.5;
+      }
+
+      .notification-message strong {
+        color: #3b82f6;
+        font-weight: 600;
+      }
+
+      .notification-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 50%;
+        color: rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      .notification-close:hover {
+        background: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+        transform: scale(1.1);
+      }
+
+      .notification-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        border-radius: 0 0 18px 18px;
+        animation: progressBar 5s linear forwards;
+      }
+
+      .success-progress {
+        background: linear-gradient(90deg, #10b981, #059669);
+      }
+
+      .error-progress {
+        background: linear-gradient(90deg, #ef4444, #dc2626);
+      }
+
+      @keyframes progressBar {
+        0% {
+          width: 100%;
+        }
+        100% {
+          width: 0%;
+        }
+      }
+
+      /* Success notification special effects */
+      .success-notification::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(16, 185, 129, 0.1) 50%,
+          transparent 70%
+        );
+        animation: successShimmer 2s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      @keyframes successShimmer {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      /* Error notification special effects */
+      .error-notification {
+        border-color: rgba(239, 68, 68, 0.3);
+      }
+
+      .error-notification::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at center,
+          rgba(239, 68, 68, 0.1) 0%,
+          transparent 70%
+        );
+        animation: errorPulse 1s ease-in-out 3;
+        pointer-events: none;
+      }
+
+      @keyframes errorPulse {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.02);
+        }
+      }
+
+      /* Mobile responsiveness for notifications */
+      @media (max-width: 768px) {
+        .quote-notification {
+          top: 20px;
+          right: 20px;
+          left: 20px;
+          width: auto;
+          max-width: none;
+          transform: translateY(-100px);
+        }
+
+        .quote-notification.show {
+          transform: translateY(0);
+        }
+
+        .quote-notification.hide {
+          transform: translateY(-100px);
+        }
+
+        .notification-content {
+          padding: 20px;
+          gap: 12px;
+        }
+
+        .notification-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+        }
+
+        .notification-title {
+          font-size: 1.1rem;
+        }
+
+        .notification-message {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .quote-popup-content {
+          padding: 30px 25px;
+          margin: 20px;
+        }
+
+        .quote-popup-title {
+          font-size: 2rem;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+          padding: 12px 16px;
+        }
+
+        .quote-submit-btn {
+          padding: 15px 30px;
+          font-size: 1rem;
+        }
+      }
+
+      /* Quote Notification Styles */
+      .quote-notification {
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        width: 400px;
+        max-width: calc(100vw - 60px);
+        background: rgba(30, 41, 59, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        z-index: 10002;
+        transform: translateX(450px);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        overflow: hidden;
+      }
+
+      .quote-notification.show {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .quote-notification.hide {
+        transform: translateX(450px);
+        opacity: 0;
+      }
+
+      .notification-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 25px;
+        position: relative;
+      }
+
+      .notification-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .success-icon {
+        background: linear-gradient(135deg, #10b981, #059669);
+        animation: successPulse 2s ease-in-out infinite;
+      }
+
+      .error-icon {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        animation: errorShake 0.5s ease-in-out;
+      }
+
+      @keyframes successPulse {
+        0%,
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+        }
+      }
+
+      @keyframes errorShake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        }
+        75% {
+          transform: translateX(5px);
+        }
+      }
+
+      .notification-text {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .notification-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 8px;
+        line-height: 1.2;
+      }
+
+      .notification-message {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.5;
+      }
+
+      .notification-message strong {
+        color: #3b82f6;
+        font-weight: 600;
+      }
+
+      .notification-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 50%;
+        color: rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      .notification-close:hover {
+        background: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+        transform: scale(1.1);
+      }
+
+      .notification-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        border-radius: 0 0 18px 18px;
+        animation: progressBar 5s linear forwards;
+      }
+
+      .success-progress {
+        background: linear-gradient(90deg, #10b981, #059669);
+      }
+
+      .error-progress {
+        background: linear-gradient(90deg, #ef4444, #dc2626);
+      }
+
+      @keyframes progressBar {
+        0% {
+          width: 100%;
+        }
+        100% {
+          width: 0%;
+        }
+      }
+
+      /* Success notification special effects */
+      .success-notification::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(16, 185, 129, 0.1) 50%,
+          transparent 70%
+        );
+        animation: successShimmer 2s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      @keyframes successShimmer {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      /* Error notification special effects */
+      .error-notification {
+        border-color: rgba(239, 68, 68, 0.3);
+      }
+
+      .error-notification::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at center,
+          rgba(239, 68, 68, 0.1) 0%,
+          transparent 70%
+        );
+        animation: errorPulse 1s ease-in-out 3;
+        pointer-events: none;
+      }
+
+      @keyframes errorPulse {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.02);
+        }
+      }
+
+      /* Mobile responsiveness for notifications */
+      @media (max-width: 768px) {
+        .quote-notification {
+          top: 20px;
+          right: 20px;
+          left: 20px;
+          width: auto;
+          max-width: none;
+          transform: translateY(-100px);
+        }
+
+        .quote-notification.show {
+          transform: translateY(0);
+        }
+
+        .quote-notification.hide {
+          transform: translateY(-100px);
+        }
+
+        .notification-content {
+          padding: 20px;
+          gap: 12px;
+        }
+
+        .notification-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+        }
+
+        .notification-title {
+          font-size: 1.1rem;
+        }
+
+        .notification-message {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header {
+          padding: 15px 20px;
+        }
+
+        .nav-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: rgba(15, 23, 42, 0.95);
+          flex-direction: column;
+          padding: 20px;
+          gap: 20px;
+        }
+
+        .nav-menu.active {
+          display: flex;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+
+        .menu-toggle.active .menu-line:nth-child(1) {
+          transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active .menu-line:nth-child(2) {
+          opacity: 0;
+        }
+
+        .menu-toggle.active .menu-line:nth-child(3) {
+          transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .hero {
+          padding: 120px 20px 50px;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .products {
+          padding: 60px 20px;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .product-card {
+          margin: 0 auto;
+          max-width: 400px;
+        }
+
+        .features {
+          padding: 50px 20px;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .certificates {
+          padding: 60px 20px;
+        }
+
+        .certificates-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+
+        .certificate-card {
+          max-width: 140px;
+          height: 140px;
+        }
+
+        .certificate-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.2rem;
+        }
+
+        .certificate-name {
+          font-size: 0.8rem;
+        }
+
+        .global-markets {
+          padding: 60px 20px;
+        }
+
+        .world-map-container {
+          max-width: 100%;
+          height: 400px;
+          width: 100%;
+        }
+
+        .market-stats {
+          gap: 20px;
+        }
+
+        .market-stats .stat-item {
+          padding: 25px 20px;
+        }
+
+        .market-stats .stat-number {
+          font-size: 2rem;
+        }
+
+        .market-stats .stat-label {
+          font-size: 1rem;
+        }
+
+        .brands {
+          padding: 60px 20px;
+        }
+
+        .brands-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .brand-card {
+          max-width: 100%;
+          height: 180px;
+        }
+
+        .brand-content {
+          padding: 30px 20px;
+        }
+
+        .brand-name {
+          font-size: 1.4rem;
+        }
+
+        .certificates {
+          padding: 60px 20px;
+        }
+
+        .certificates-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+
+        .certificate-card {
+          max-width: 140px;
+          height: 140px;
+        }
+
+        .certificate-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.2rem;
+        }
+
+        .certificate-name {
+          font-size: 0.8rem;
+        }
+
+        .global-markets {
+          padding: 60px 20px;
+        }
+
+        .world-map-container {
+          max-width: 100%;
+          height: 400px;
+          width: 100%;
+        }
+
+        .market-stats {
+          gap: 20px;
+        }
+
+        .market-stats .stat-item {
+          padding: 25px 20px;
+        }
+
+        .market-stats .stat-number {
+          font-size: 2rem;
+        }
+
+        .market-stats .stat-label {
+          font-size: 1rem;
+        }
+
+        .brands {
+          padding: 60px 20px;
+        }
+
+        .brands-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .brand-card {
+          max-width: 100%;
+          height: 180px;
+        }
+
+        .brand-content {
+          padding: 30px 20px;
+        }
+
+        .brand-name {
+          font-size: 1.4rem;
+        }
+
+        .business-model {
+          padding: 60px 20px;
+        }
+
+        .business-model-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .model-card {
+          max-width: 100%;
+          padding: 40px 30px;
+        }
+
+        .model-title {
+          font-size: 1.6rem;
+        }
+
+        .model-description {
+          font-size: 1rem;
+        }
+
+        .what-we-do {
+          padding: 60px 20px;
+        }
+
+        .what-we-do-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .service-card {
+          height: 350px;
+          max-width: 100%;
+        }
+
+        .service-content {
+          padding: 40px 30px;
+        }
+
+        .service-title {
+          font-size: 1.6rem;
+        }
+
+        .service-description {
+          font-size: 1rem;
+        }
+
+        .footer {
+          padding: 60px 20px 0;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .footer-brand {
+          max-width: 100%;
+          text-align: center;
+        }
+
+        .footer-logo-container {
+          justify-content: center;
+        }
+
+        .footer-social {
+          justify-content: center;
+        }
+
+        .footer-contact {
+          max-width: 100%;
+        }
+
+        .footer-bottom-content {
+          text-align: center;
+        }
+
+        .copyright {
+          font-size: 0.8rem;
+        }
+
+        .footer-tagline {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Wave Background -->
+    <div class="wave-bg"></div>
+    <div class="wave-animation"></div>
+
+    <!-- Floating Elements -->
+    <div class="floating-element">🐟</div>
+    <div class="floating-element">🦐</div>
+    <div class="floating-element">🐠</div>
+
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <div class="logo-container" onclick="logoClick()">
+          <div class="logo-icon">
+            <span style="font-size: 28px; font-weight: 900; color: white"
+              >S</span
+            >
+          </div>
+          <div class="brand-text">
+            <h1 class="brand-name">SIGMA</h1>
+            <p class="brand-subtitle">Sea Foods</p>
+          </div>
+        </div>
+
+        <div class="nav-menu" id="navMenu">
+          <a href="#hero" class="nav-link" onclick="navClick('home')">Home</a>
+          <a href="#company" class="nav-link" onclick="navClick('about')"
+            >About Us</a
+          >
+          <a
+            href="#what-we-do"
+            class="nav-link"
+            onclick="navClick('operations')"
+            >Operations</a
+          >
+          <a href="#products" class="nav-link" onclick="navClick('products')"
+            >Products</a
+          >
+          <a
+            href="#global-markets"
+            class="nav-link"
+            onclick="navClick('markets')"
+            >Markets</a
+          >
+          <a href="#brands" class="nav-link" onclick="navClick('media')"
+            >Media</a
+          >
+          <a href="#contact" class="nav-link" onclick="navClick('contact')"
+            >Contact Us</a
+          >
+        </div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+          <div class="menu-line"></div>
+          <div class="menu-line"></div>
+          <div class="menu-line"></div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="herobg"></div>
+
+      <!-- Smoke Effects -->
+      <div class="smoke-container">
+        <div class="smoke"></div>
+        <div class="smoke"></div>
+        <div class="smoke"></div>
+        <div class="smoke"></div>
+        <div class="smoke"></div>
+        <div class="smoke"></div>
+      </div>
+
+      <!-- Smoke Particles -->
+      <div class="smoke-particles" id="smokeParticles"></div>
+
+      <div class="hero-content">
+        <h1 class="hero-title" onclick="titleClick()" id="heroTitle">
+          PREMIUM SEAFOOD
+        </h1>
+        <p class="hero-subtitle">
+          Our meticulous processing methods ensure the highest quality shrimp
+        </p>
+
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-primary" onclick="exploreClick()">
+            <i class="fas fa-compass"></i>
+            Explore Products
+          </a>
+          <a href="#" class="btn btn-secondary" onclick="contactClick()">
+            <i class="fas fa-phone"></i>
+            Get Quote
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Company Section -->
+    <section id="company" class="company">
+      <div class="company-container">
+        <div class="company-header">
+          <h2 class="company-title">OUR COMPANY</h2>
+          <div class="company-intro">
+            <p class="company-lead">
+              Sigma Seafoods, established in 2020, is a dedicated processing
+              unit specializing in the processing and export of high-quality
+              shrimp.
+            </p>
+          </div>
+        </div>
+
+        <div class="company-content">
+          <div class="company-story">
+            <div class="story-card" onclick="storyClick('excellence')">
+              <div class="story-icon">
+                <i class="fas fa-industry"></i>
+              </div>
+              <div class="story-content">
+                <h3 class="story-title">Excellence & Quality</h3>
+                <p class="story-text">
+                  With a focus on excellence, we ensure that our products meet
+                  stringent quality standards, providing our clients with the
+                  finest shrimp products available. Our commitment to
+                  sustainable practices underscores our mission to deliver both
+                  exceptional taste and environmental responsibility.
+                </p>
+              </div>
+            </div>
+
+            <div class="story-card" onclick="storyClick('global')">
+              <div class="story-icon">
+                <i class="fas fa-globe-americas"></i>
+              </div>
+              <div class="story-content">
+                <h3 class="story-title">Global Reach</h3>
+                <p class="story-text">
+                  Our products are exported to a diverse range of global
+                  markets, including the USA, EU, China, Middle East, and
+                  numerous other countries. This broad reach reflects our
+                  ability to meet the varied demands of international clientele
+                  while maintaining the highest standards of product excellence
+                  and customer satisfaction.
+                </p>
+              </div>
+            </div>
+
+            <div class="story-card" onclick="storyClick('waters')">
+              <div class="story-icon">
+                <i class="fas fa-water"></i>
+              </div>
+              <div class="story-content">
+                <h3 class="story-title">Premium Waters</h3>
+                <p class="story-text">
+                  We farm and process premium seafood products from pristine
+                  waters of eastern coast of India. Our farming operations
+                  started in 2010 and now it is extended to an area of almost
+                  1500 acres across beautiful state of Andhra Pradesh.
+                </p>
+              </div>
+            </div>
+
+            <div class="story-card" onclick="storyClick('processing')">
+              <div class="story-icon">
+                <i class="fas fa-cogs"></i>
+              </div>
+              <div class="story-content">
+                <h3 class="story-title">State-of-the-Art Processing</h3>
+                <p class="story-text">
+                  From farming we ventured in to selling frozen shrimp in Indian
+                  market from 2015 with eye on global markets for our premium
+                  quality shrimp. The state-of-the-art processing plant is
+                  located in Peddapuram. Proximity of raw material sources to
+                  our processing plant guarantees maximum freshness. Our team is
+                  dedicated to provide our customers with top-quality products.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="company-stats">
+            <div class="stat-card">
+              <div class="stat-number">2020</div>
+              <div class="stat-label">Established</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">1500</div>
+              <div class="stat-label">Acres of Farming</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">2010</div>
+              <div class="stat-label">Farming Started</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">2015</div>
+              <div class="stat-label">Export Operations</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+      <div class="products-container">
+        <div class="products-header">
+          <h2 class="products-title">
+            Premium Quality Raw Frozen Vannamei Shrimp
+          </h2>
+          <h3 class="products-subtitle">
+            We process a variety of standard & value added products in
+            Individually quick frozen(IQF) & Block Frozen form.
+          </h3>
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card" onclick="productClick('hoso')">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=400&h=300&fit=crop&crop=center"
+                alt="Raw Head On Shell On Vannamei Shrimp"
+                class="product-image"
+                onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';"
+              />
+              <div class="product-overlay">
+                <i class="fas fa-eye"></i>
+                <span>View Details</span>
+              </div>
+            </div>
+            <div class="product-info">
+              <h4 class="product-name">Raw Head On Shell On Vannamei Shrimp</h4>
+              <p class="product-description">
+                Whole shrimp with head and shell intact, ideal for authentic
+                seafood presentations and traditional cooking methods.
+              </p>
+              <div class="product-specs">
+                <span class="spec-item">Block Frozen</span>
+                <span class="spec-item">Size: 20/30 - 80/100</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" onclick="productClick('pdto')">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1558818498-28c1e002b655?w=400&h=300&fit=crop&crop=center"
+                alt="Raw Peeled & Deveined Tail On Vannamei Shrimp"
+                class="product-image"
+                onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';"
+              />
+              <div class="product-overlay">
+                <i class="fas fa-eye"></i>
+                <span>View Details</span>
+              </div>
+            </div>
+            <div class="product-info">
+              <h4 class="product-name">
+                Raw Peeled & Deveined Tail On Vannamei Shrimp
+              </h4>
+              <p class="product-description">
+                Elegant presentation with tail on, perfect for upscale dining
+                and special occasions with convenient preparation.
+              </p>
+              <div class="product-specs">
+                <span class="spec-item">IQF & Block</span>
+                <span class="spec-item">Size: 16/20 - 61/70</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" onclick="productClick('pd')">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=400&h=300&fit=crop&crop=center"
+                alt="Raw Peeled & Deveined Tail Off Vannamei Shrimp"
+                class="product-image"
+                onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';"
+              />
+              <div class="product-overlay">
+                <i class="fas fa-eye"></i>
+                <span>View Details</span>
+              </div>
+            </div>
+            <div class="product-info">
+              <h4 class="product-name">
+                Raw Peeled & Deveined Tail Off Vannamei Shrimp
+              </h4>
+              <p class="product-description">
+                Ready-to-cook peeled and deveined shrimp with tail removed,
+                convenient for quick meal preparation and versatile cooking.
+              </p>
+              <div class="product-specs">
+                <span class="spec-item">IQF Premium</span>
+                <span class="spec-item">Size: 21/25 - 71/90</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" onclick="productClick('hlso')">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=400&h=300&fit=crop&crop=center"
+                alt="Raw Headless Shell On EZ-peel Vannamei Shrimp"
+                class="product-image"
+                onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';"
+              />
+              <div class="product-overlay">
+                <i class="fas fa-eye"></i>
+                <span>View Details</span>
+              </div>
+            </div>
+            <div class="product-info">
+              <h4 class="product-name">
+                Raw Headless Shell On EZ-peel Vannamei Shrimp
+              </h4>
+              <p class="product-description">
+                Premium headless shell-on shrimp with easy-peel feature, perfect
+                for grilling and convenient shell removal.
+              </p>
+              <div class="product-specs">
+                <span class="spec-item">IQF Available</span>
+                <span class="spec-item">Size: 16/20 - 100/200</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" onclick="productClick('butterfly')">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1562967914-608f82629710?w=400&h=300&fit=crop&crop=center"
+                alt="Butterfly Vannamei Shrimp"
+                class="product-image"
+                onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';"
+              />
+              <div class="product-overlay">
+                <i class="fas fa-eye"></i>
+                <span>View Details</span>
+              </div>
+            </div>
+            <div class="product-info">
+              <h4 class="product-name">Butterfly Vannamei Shrimp</h4>
+              <p class="product-description">
+                Expertly butterflied shrimp with elegant presentation, perfect
+                for tempura, breading, and premium culinary applications.
+              </p>
+              <div class="product-specs">
+                <span class="spec-item">IQF Premium</span>
+                <span class="spec-item">Size: 21/25 - 41/50</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Black Tiger Shrimp Section -->
+    <section class="products">
+      <div class="products-container">
+        <div class="products-header">
+          <h2 class="products-title">
+            Premium Quality Raw Frozen Black Tiger Shrimp
+          </h2>
+          <h3 class="products-subtitle">
+            We process a variety of standard & value added products in
+            Individually quick frozen(IQF) & Block Frozen form.
+          </h3>
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card" onclick="productClick('tiger-hoso')">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=400&h=300&fit=crop&crop=center"
+                alt="Raw Head On Shell On Black Tiger Shrimp"
+                class="product-image"
+                onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';"
+              />
+              <div class="product-overlay">
+                <i class="fas fa-eye"></i>
+                <span>View Details</span>
+              </div>
+            </div>
+            <div class="product-info">
+              <h4 class="product-name">
+                Raw Head On Shell On Black Tiger Shrimp
+              </h4>
+              <p class="product-description">
+                Premium black tiger shrimp with distinctive stripes, head and
+                shell intact for maximum flavor and authentic presentation.
+              </p>
+              <div class="product-specs">
+                <span class="spec-item">Block Frozen</span>
+                <span class="spec-item">Size: 8/12 - 40/50</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" onclick="productClick('tiger-pdto')">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1558818498-28c1e002b655?w=400&h=300&fit=crop&crop=center"
+                alt="Raw Peeled & Deveined Tail On Black Tiger Shrimp"
+                class="product-image"
+                onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';"
+              />
+              <div class="product-overlay">
+                <i class="fas fa-eye"></i>
+                <span>View Details</span>
+              </div>
+            </div>
+            <div class="product-info">
+              <h4 class="product-name">
+                Raw Peeled & Deveined Tail On Black Tiger Shrimp
+              </h4>
+              <p class="product-description">
+                Luxurious black tiger shrimp with tail on, perfect for gourmet
+                presentations and fine dining experiences.
+              </p>
+              <div class="product-specs">
+                <span class="spec-item">IQF & Block</span>
+                <span class="spec-item">Size: 10/15 - 31/40</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" onclick="productClick('tiger-pd')">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=400&h=300&fit=crop&crop=center"
+                alt="Raw Peeled & Deveined Tail Off Black Tiger Shrimp"
+                class="product-image"
+                onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';"
+              />
+              <div class="product-overlay">
+                <i class="fas fa-eye"></i>
+                <span>View Details</span>
+              </div>
+            </div>
+            <div class="product-info">
+              <h4 class="product-name">
+                Raw Peeled & Deveined Tail Off Black Tiger Shrimp
+              </h4>
+              <p class="product-description">
+                Ready-to-cook black tiger shrimp with superior texture and
+                flavor, ideal for professional kitchens and culinary excellence.
+              </p>
+              <div class="product-specs">
+                <span class="spec-item">IQF Premium</span>
+                <span class="spec-item">Size: 13/15 - 36/40</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" onclick="productClick('tiger-hlso')">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=400&h=300&fit=crop&crop=center"
+                alt="Raw Headless Shell On Black Tiger Shrimp"
+                class="product-image"
+                onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';"
+              />
+              <div class="product-overlay">
+                <i class="fas fa-eye"></i>
+                <span>View Details</span>
+              </div>
+            </div>
+            <div class="product-info">
+              <h4 class="product-name">
+                Raw Headless Shell On Black Tiger Shrimp
+              </h4>
+              <p class="product-description">
+                Premium headless black tiger shrimp with shell protection,
+                maintaining natural moisture and distinctive tiger stripe
+                appearance.
+              </p>
+              <div class="product-specs">
+                <span class="spec-item">IQF Available</span>
+                <span class="spec-item">Size: 8/12 - 50/60</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" onclick="productClick('tiger-butterfly')">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1562967914-608f82629710?w=400&h=300&fit=crop&crop=center"
+                alt="Butterfly Black Tiger Shrimp"
+                class="product-image"
+                onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';"
+              />
+              <div class="product-overlay">
+                <i class="fas fa-eye"></i>
+                <span>View Details</span>
+              </div>
+            </div>
+            <div class="product-info">
+              <h4 class="product-name">Butterfly Black Tiger Shrimp</h4>
+              <p class="product-description">
+                Expertly butterflied black tiger shrimp showcasing the
+                distinctive striped pattern, perfect for tempura and premium
+                preparations.
+              </p>
+              <div class="product-specs">
+                <span class="spec-item">IQF Premium</span>
+                <span class="spec-item">Size: 16/20 - 26/30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section id="what-we-do" class="what-we-do">
+      <div class="what-we-do-container">
+        <div class="what-we-do-header">
+          <h2 class="what-we-do-title">What We Do</h2>
+          <p class="what-we-do-subtitle">
+            We grow and process premium seafood products from the pristine
+            waters of eastern coast of India.
+          </p>
+        </div>
+
+        <div class="what-we-do-grid">
+          <div
+            class="service-card processing-card"
+            onclick="serviceClick('processing')"
+          >
+            <div class="service-bg-overlay"></div>
+            <div class="service-content">
+              <div class="service-icon">
+                <i class="fas fa-industry"></i>
+              </div>
+              <h3 class="service-title">PROCESSING AND EXPORT</h3>
+              <p class="service-description">
+                Sigma Seafoods is a leading exporter of shrimp from India, with
+                vertically integrated infrastructure.
+              </p>
+              <div class="service-arrow">
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="service-card supply-card"
+            onclick="serviceClick('supply')"
+          >
+            <div class="service-bg-overlay"></div>
+            <div class="service-content">
+              <div class="service-icon">
+                <i class="fas fa-shipping-fast"></i>
+              </div>
+              <h3 class="service-title">SUPPLY SOLUTIONS</h3>
+              <p class="service-description">
+                Sigma Seafoods manages shrimp Marketing and Distribution
+                networks.
+              </p>
+              <div class="service-arrow">
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Operating Model Section -->
+    <section class="business-model">
+      <div class="business-model-container">
+        <div class="business-model-header">
+          <h2 class="business-model-title">Our Business Operating Model</h2>
+          <p class="business-model-subtitle">
+            At Sigma Seafoods we are strict following & hygienic process for
+            processing the Shrimp.
+          </p>
+        </div>
+
+        <div class="business-model-grid">
+          <div
+            class="model-card traceable-card"
+            onclick="modelClick('traceable')"
+          >
+            <div class="model-bg-pattern"></div>
+            <div class="model-content">
+              <div class="model-icon">
+                <i class="fas fa-search-location"></i>
+              </div>
+              <h3 class="model-title">Traceable</h3>
+              <p class="model-description">
+                Ensuring traceability from farm to fork
+              </p>
+              <div class="model-features">
+                <div class="feature-point">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Complete supply chain tracking</span>
+                </div>
+                <div class="feature-point">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Digital documentation system</span>
+                </div>
+                <div class="feature-point">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Real-time monitoring</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="model-card sustainable-card"
+            onclick="modelClick('sustainable')"
+          >
+            <div class="model-bg-pattern"></div>
+            <div class="model-content">
+              <div class="model-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <h3 class="model-title">Sustainable</h3>
+              <p class="model-description">
+                Making sure the Shrimp is raised with no impact to the
+                environment
+              </p>
+              <div class="model-features">
+                <div class="feature-point">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Zero environmental impact</span>
+                </div>
+                <div class="feature-point">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Eco-friendly farming practices</span>
+                </div>
+                <div class="feature-point">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Resource conservation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="model-card ethical-card" onclick="modelClick('ethical')">
+            <div class="model-bg-pattern"></div>
+            <div class="model-content">
+              <div class="model-icon">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <h3 class="model-title">Ethical</h3>
+              <p class="model-description">Following ethical practices</p>
+              <div class="model-features">
+                <div class="feature-point">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Fair labor practices</span>
+                </div>
+                <div class="feature-point">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Community development</span>
+                </div>
+                <div class="feature-point">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Transparent operations</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Brands Section -->
+    <section id="brands" class="brands">
+      <div class="brands-container">
+        <div class="brands-header">
+          <h2 class="brands-title">Our Brands</h2>
+          <p class="brands-subtitle">
+            Sigma Seafoods is an established large volume supplier that supports
+            long term commitments
+          </p>
+        </div>
+
+        <div class="brands-grid">
+          <div class="brand-card" onclick="brandClick('sigma-lite')">
+            <div class="brand-shine"></div>
+            <div class="brand-content">
+              <div class="brand-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <h3 class="brand-name">SIGMA LITE</h3>
+            </div>
+          </div>
+
+          <div class="brand-card" onclick="brandClick('breeze')">
+            <div class="brand-shine"></div>
+            <div class="brand-content">
+              <div class="brand-icon">
+                <i class="fas fa-wind"></i>
+              </div>
+              <h3 class="brand-name">BREEZE</h3>
+            </div>
+          </div>
+
+          <div class="brand-card" onclick="brandClick('sigma-choice')">
+            <div class="brand-shine"></div>
+            <div class="brand-content">
+              <div class="brand-icon">
+                <i class="fas fa-crown"></i>
+              </div>
+              <h3 class="brand-name">SIGMA CHOICE</h3>
+            </div>
+          </div>
+
+          <div class="brand-card" onclick="brandClick('neo-shrimp')">
+            <div class="brand-shine"></div>
+            <div class="brand-content">
+              <div class="brand-icon">
+                <i class="fas fa-gem"></i>
+              </div>
+              <h3 class="brand-name">NEO SHRIMP</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Certificates Section -->
+    <section class="certificates">
+      <div class="certificates-container">
+        <div class="certificates-header">
+          <h2 class="certificates-title">Our Certificates</h2>
+          <p class="certificates-subtitle">
+            Quality assurance through internationally recognized certifications
+            and standards
+          </p>
+        </div>
+
+        <div class="certificates-grid">
+          <div class="certificate-card" onclick="certificateClick('haccp')">
+            <div class="certificate-shine"></div>
+            <div class="certificate-content">
+              <img
+                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=200&h=200&fit=crop&crop=center"
+                alt="HACCP Certificate"
+                class="certificate-image"
+                onerror="this.src=''; this.alt='Certificate image failed to load'; this.style.display='none';"
+              />
+              <h3 class="certificate-name">HACCP</h3>
+            </div>
+          </div>
+
+          <div class="certificate-card" onclick="certificateClick('iso22000')">
+            <div class="certificate-shine"></div>
+            <div class="certificate-content">
+              <img
+                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=200&h=200&fit=crop&crop=center"
+                alt="ISO 22000 Certificate"
+                class="certificate-image"
+                onerror="this.src=''; this.alt='Certificate image failed to load'; this.style.display='none';"
+              />
+              <h3 class="certificate-name">ISO 22000</h3>
+            </div>
+          </div>
+
+          <div class="certificate-card" onclick="certificateClick('brc')">
+            <div class="certificate-shine"></div>
+            <div class="certificate-content">
+              <img
+                src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=200&h=200&fit=crop&crop=center"
+                alt="BRC Certificate"
+                class="certificate-image"
+                onerror="this.src=''; this.alt='Certificate image failed to load'; this.style.display='none';"
+              />
+              <h3 class="certificate-name">BRC</h3>
+            </div>
+          </div>
+
+          <div class="certificate-card" onclick="certificateClick('halal')">
+            <div class="certificate-shine"></div>
+            <div class="certificate-content">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=center"
+                alt="HALAL Certificate"
+                class="certificate-image"
+                onerror="this.src=''; this.alt='Certificate image failed to load'; this.style.display='none';"
+              />
+              <h3 class="certificate-name">HALAL</h3>
+            </div>
+          </div>
+
+          <div class="certificate-card" onclick="certificateClick('fda')">
+            <div class="certificate-shine"></div>
+            <div class="certificate-content">
+              <img
+                src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=200&h=200&fit=crop&crop=center"
+                alt="FDA Certificate"
+                class="certificate-image"
+                onerror="this.src=''; this.alt='Certificate image failed to load'; this.style.display='none';"
+              />
+              <h3 class="certificate-name">FDA</h3>
+            </div>
+          </div>
+
+          <div class="certificate-card" onclick="certificateClick('eu')">
+            <div class="certificate-shine"></div>
+            <div class="certificate-content">
+              <img
+                src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=200&h=200&fit=crop&crop=center"
+                alt="EU Approved Certificate"
+                class="certificate-image"
+                onerror="this.src=''; this.alt='Certificate image failed to load'; this.style.display='none';"
+              />
+              <h3 class="certificate-name">EU APPROVED</h3>
+            </div>
+          </div>
+
+          <div class="certificate-card" onclick="certificateClick('organic')">
+            <div class="certificate-shine"></div>
+            <div class="certificate-content">
+              <img
+                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=200&h=200&fit=crop&crop=center"
+                alt="Organic Certificate"
+                class="certificate-image"
+                onerror="this.src=''; this.alt='Certificate image failed to load'; this.style.display='none';"
+              />
+              <h3 class="certificate-name">ORGANIC</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Global Markets Section -->
+    <section id="global-markets" class="global-markets">
+      <div class="global-markets-container">
+        <div class="global-markets-header">
+          <h2 class="global-markets-title">Our Global Markets</h2>
+          <p class="global-markets-subtitle">
+            Market Presence and Customer Commitment
+          </p>
+        </div>
+
+        <div class="world-map-container" onclick="worldMapClick()">
+          <div class="map-overlay">
+            <div class="map-icon">
+              <i class="fas fa-globe-americas"></i>
+            </div>
+            <h3 class="map-title">Global Reach</h3>
+            <p class="map-subtitle">Serving customers worldwide</p>
+          </div>
+        </div>
+
+        <div class="market-stats">
+          <div class="stat-item" onclick="marketStatClick('countries')">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Countries</div>
+          </div>
+          <div class="stat-item" onclick="marketStatClick('clients')">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Global Clients</div>
+          </div>
+          <div class="stat-item" onclick="marketStatClick('support')">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Customer Support</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <!-- Brand Column -->
+          <div class="footer-brand">
+            <div class="footer-logo-container" onclick="logoClick()">
+              <div class="footer-logo">
+                <span>S</span>
+              </div>
+              <div class="footer-brand-text">
+                <h3 class="footer-brand-name">SIGMA</h3>
+                <p class="footer-brand-subtitle">Sea Foods</p>
+              </div>
+            </div>
+            <p class="footer-description">
+              Sigma seafoods is one of India's fastest growing company in the
+              food industry. It is established in 2020 by a group of zealous
+              entrepreneurs who has extensive experience in the seafoods
+              industry.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-icon" onclick="socialClick('facebook')">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon" onclick="socialClick('twitter')">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon" onclick="socialClick('linkedin')">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="#"
+                class="social-icon"
+                onclick="socialClick('instagram')"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links Column -->
+          <div class="footer-section">
+            <h3 class="footer-title">Quick Links</h3>
+            <div class="footer-links">
+              <a href="#" class="footer-link" onclick="footerNavClick('home')"
+                >Home</a
+              >
+              <a href="#" class="footer-link" onclick="footerNavClick('about')"
+                >About Us</a
+              >
+              <a
+                href="#"
+                class="footer-link"
+                onclick="footerNavClick('operations')"
+                >Operations</a
+              >
+              <a
+                href="#"
+                class="footer-link"
+                onclick="footerNavClick('products')"
+                >Products</a
+              >
+              <a
+                href="#"
+                class="footer-link"
+                onclick="footerNavClick('markets')"
+                >Markets</a
+              >
+              <a href="#" class="footer-link" onclick="footerNavClick('media')"
+                >Media</a
+              >
+              <a
+                href="#"
+                class="footer-link"
+                onclick="footerNavClick('contact')"
+                >Contact Us</a
+              >
+            </div>
+          </div>
+
+          <!-- Other Links Column -->
+          <div class="footer-section">
+            <h3 class="footer-title">Other Links</h3>
+            <div class="footer-links">
+              <a
+                href="#"
+                class="footer-link"
+                onclick="footerNavClick('processing-plant')"
+                >Our Processing Plant</a
+              >
+              <a href="#" class="footer-link" onclick="footerNavClick('vision')"
+                >Our Vision</a
+              >
+              <a
+                href="#"
+                class="footer-link"
+                onclick="footerNavClick('mission')"
+                >Our Mission</a
+              >
+              <a href="#" class="footer-link" onclick="footerNavClick('brands')"
+                >Our Brands</a
+              >
+              <a
+                href="#"
+                class="footer-link"
+                onclick="footerNavClick('certifications')"
+                >Our Certifications</a
+              >
+            </div>
+          </div>
+
+          <!-- Contact Info Column -->
+          <div class="footer-contact">
+            <h3 class="footer-title">Contact Info</h3>
+
+            <div class="contact-item">
+              <div class="contact-label">
+                <i class="fas fa-building"></i>
+                Corporate Office
+              </div>
+              <div class="contact-text">
+                10-161, Ramanayyapeta, Apiic Colony, Kakinada Rural, East
+                Godavari, Andhra Pradesh – 533005
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-label">
+                <i class="fas fa-industry"></i>
+                Processing Factory
+              </div>
+              <div class="contact-text">
+                Sigma seafoods, plot no:12, Phase 3, IDA, ADB road, Peddapuram,
+                EG, Andhra Pradesh-533437
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-label">
+                <i class="fas fa-phone"></i>
+                Phone
+              </div>
+              <div class="contact-phone">
+                <a href="tel:+919121261744" class="phone-number"
+                  >+91 91212 61744</a
+                >
+                <a href="tel:+919384555559" class="phone-number"
+                  >+91 93845 55559</a
+                >
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-label">
+                <i class="fas fa-envelope"></i>
+                Email
+              </div>
+              <div class="contact-text">
+                <a href="mailto:sales@sigmaseafoods.in" class="contact-email"
+                  >sales@sigmaseafoods.in</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-bottom-content">
+            <div class="copyright">
+              © 2024 SIGMA Sea Foods. All rights reserved.
+            </div>
+            <div class="footer-tagline">
+              Premium Seafood • Global Excellence • Sustainable Future
+            </div>
+            <div class="footer-legal">
+              <a href="#" onclick="footerBottomClick('privacy')"
+                >Privacy Policy</a
+              >
+              <a href="#" onclick="footerBottomClick('terms')"
+                >Terms of Service</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Quote Popup -->
+    <div id="quotePopup" class="quote-popup" onclick="closeQuotePopup()">
+      <div class="quote-popup-content" onclick="event.stopPropagation()">
+        <button class="quote-close-btn" onclick="closeQuotePopup()">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <div class="quote-popup-header">
+          <h2 class="quote-popup-title">Get Quote</h2>
+          <p class="quote-popup-subtitle">
+            Request a personalized quote for premium seafood products
+          </p>
+        </div>
+
+        <form class="quote-form" onsubmit="submitQuote(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-user"></i>
+                Full Name <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                class="form-input"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-envelope"></i>
+                Email Address <span class="required">*</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                class="form-input"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-building"></i>
+                Company Name <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                name="company"
+                class="form-input"
+                placeholder="Enter company name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-phone"></i>
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                name="phone"
+                class="form-input"
+                placeholder="Enter phone number"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-globe"></i>
+                Country <span class="required">*</span>
+              </label>
+              <select name="country" class="form-select" required>
+                <option value="">Select your country</option>
+                <option value="USA">United States</option>
+                <option value="UK">United Kingdom</option>
+                <option value="Germany">Germany</option>
+                <option value="France">France</option>
+                <option value="Italy">Italy</option>
+                <option value="Spain">Spain</option>
+                <option value="Netherlands">Netherlands</option>
+                <option value="Belgium">Belgium</option>
+                <option value="China">China</option>
+                <option value="Japan">Japan</option>
+                <option value="South Korea">South Korea</option>
+                <option value="UAE">United Arab Emirates</option>
+                <option value="Saudi Arabia">Saudi Arabia</option>
+                <option value="Qatar">Qatar</option>
+                <option value="Kuwait">Kuwait</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-fish"></i>
+                Product Type <span class="required">*</span>
+              </label>
+              <select name="product" class="form-select" required>
+                <option value="">Select product type</option>
+                <option value="Vannamei HOSO">Vannamei Head On Shell On</option>
+                <option value="Vannamei PDTO">
+                  Vannamei Peeled Deveined Tail On
+                </option>
+                <option value="Vannamei PD">Vannamei Peeled Deveined</option>
+                <option value="Vannamei HLSO">
+                  Vannamei Headless Shell On
+                </option>
+                <option value="Vannamei Butterfly">Vannamei Butterfly</option>
+                <option value="Black Tiger HOSO">
+                  Black Tiger Head On Shell On
+                </option>
+                <option value="Black Tiger PDTO">
+                  Black Tiger Peeled Deveined Tail On
+                </option>
+                <option value="Black Tiger PD">
+                  Black Tiger Peeled Deveined
+                </option>
+                <option value="Black Tiger HLSO">
+                  Black Tiger Headless Shell On
+                </option>
+                <option value="Black Tiger Butterfly">
+                  Black Tiger Butterfly
+                </option>
+                <option value="Mixed Products">Mixed Products</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-weight-hanging"></i>
+                Quantity Required <span class="required">*</span>
+              </label>
+              <select name="quantity" class="form-select" required>
+                <option value="">Select quantity range</option>
+                <option value="1-5 MT">1-5 Metric Tons</option>
+                <option value="5-10 MT">5-10 Metric Tons</option>
+                <option value="10-20 MT">10-20 Metric Tons</option>
+                <option value="20-50 MT">20-50 Metric Tons</option>
+                <option value="50+ MT">50+ Metric Tons</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-calendar"></i>
+                Delivery Timeline
+              </label>
+              <select name="timeline" class="form-select">
+                <option value="">Select timeline</option>
+                <option value="Immediate">Immediate (Within 2 weeks)</option>
+                <option value="1 Month">Within 1 Month</option>
+                <option value="2-3 Months">2-3 Months</option>
+                <option value="Flexible">Flexible Timeline</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label">
+              <i class="fas fa-comment"></i>
+              Additional Requirements
+            </label>
+            <textarea
+              name="message"
+              class="form-textarea"
+              placeholder="Please specify size requirements, packaging preferences, certifications needed, or any other special requirements..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="quote-submit-btn">
+            <i class="fas fa-paper-plane"></i>
+            Submit Quote Request
+          </button>
+
+          <div class="quote-info">
+            <div class="quote-info-title">
+              <i class="fas fa-info-circle"></i>
+              What happens next?
+            </div>
+            <div class="quote-info-text">
+              Our sales team will review your requirements and contact you
+              within 24 hours with a detailed quote including pricing,
+              specifications, and delivery terms. All quotes are valid for 30
+              days.
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Interactive Functions
+      function logoClick() {
+        const logo = document.querySelector(".logo-icon");
+        logo.style.transform = "scale(1.2) rotate(360deg)";
+        setTimeout(() => {
+          logo.style.transform = "scale(1) rotate(0deg)";
+        }, 600);
+      }
+
+      function toggleMenu() {
+        const menu = document.getElementById("navMenu");
+        const toggle = document.querySelector(".menu-toggle");
+        menu.classList.toggle("active");
+        toggle.classList.toggle("active");
+      }
+
+      function navClick(section) {
+        // Close mobile menu if open
+        const menu = document.getElementById("navMenu");
+        const toggle = document.querySelector(".menu-toggle");
+        menu.classList.remove("active");
+        toggle.classList.remove("active");
+
+        // Let the default anchor behavior handle the scrolling
+        // The smooth scroll CSS will make it animate nicely
+      }
+
+      function titleClick() {
+        const title = document.querySelector(".hero-title");
+        title.style.transform = "scale(1.05)";
+        title.style.textShadow = "0 0 30px rgba(59, 130, 246, 0.5)";
+        setTimeout(() => {
+          title.style.transform = "scale(1)";
+          title.style.textShadow = "none";
+        }, 500);
+      }
+
+      function exploreClick() {
+        event.preventDefault();
+        alert("Exploring our premium seafood collection!");
+      }
+
+      function contactClick() {
+        event.preventDefault();
+        showQuotePopup();
+      }
+
+      function showQuotePopup() {
+        const popup = document.getElementById("quotePopup");
+        popup.style.display = "flex";
+        setTimeout(() => {
+          popup.classList.add("active");
+        }, 10);
+      }
+
+      function closeQuotePopup() {
+        const popup = document.getElementById("quotePopup");
+        popup.classList.remove("active");
+        setTimeout(() => {
+          popup.style.display = "none";
+        }, 300);
+      }
+
+      function submitQuote(event) {
+        event.preventDefault();
+
+        // Get form data
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData);
+
+        // Simple validation
+        if (
+          !data.name ||
+          !data.email ||
+          !data.company ||
+          !data.product ||
+          !data.quantity
+        ) {
+          showQuoteError("Please fill in all required fields.");
+          return;
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email)) {
+          showQuoteError("Please enter a valid email address.");
+          return;
+        }
+
+        // Show loading state
+        showQuoteLoading();
+
+        // Simulate API call with timeout
+        setTimeout(() => {
+          showQuoteSuccess(data);
+
+          // Reset form and close popup after delay
+          setTimeout(() => {
+            event.target.reset();
+            closeQuotePopup();
+          }, 3000);
+        }, 2000);
+      }
+
+      function showQuoteLoading() {
+        const submitBtn = document.querySelector(".quote-submit-btn");
+        const originalContent = submitBtn.innerHTML;
+
+        submitBtn.disabled = true;
+        submitBtn.style.background =
+          "linear-gradient(135deg, #6b7280, #4b5563)";
+        submitBtn.innerHTML = `
+                <div class="loading-spinner"></div>
+                Processing Request...
+            `;
+
+        // Add loading spinner styles if not already added
+        if (!document.querySelector("#loadingSpinnerStyles")) {
+          const style = document.createElement("style");
+          style.id = "loadingSpinnerStyles";
+          style.textContent = `
+                    .loading-spinner {
+                        width: 20px;
+                        height: 20px;
+                        border: 2px solid rgba(255, 255, 255, 0.3);
+                        border-top: 2px solid white;
+                        border-radius: 50%;
+                        animation: spin 1s linear infinite;
+                    }
+                    
+                    @keyframes spin {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+                `;
+          document.head.appendChild(style);
+        }
+      }
+
+      function showQuoteError(message) {
+        // Create error notification
+        const errorNotification = document.createElement("div");
+        errorNotification.className = "quote-notification error-notification";
+        errorNotification.innerHTML = `
+                <div class="notification-content">
+                    <div class="notification-icon error-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="notification-text">
+                        <div class="notification-title">Validation Error</div>
+                        <div class="notification-message">${message}</div>
+                    </div>
+                    <button class="notification-close" onclick="closeNotification(this)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="notification-progress error-progress"></div>
+            `;
+
+        showNotification(errorNotification);
+      }
+
+      function showQuoteSuccess(data) {
+        // Reset submit button
+        const submitBtn = document.querySelector(".quote-submit-btn");
+        submitBtn.disabled = false;
+        submitBtn.style.background =
+          "linear-gradient(135deg, #10b981, #059669)";
+        submitBtn.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                Request Submitted Successfully!
+            `;
+
+        // Create success notification
+        const successNotification = document.createElement("div");
+        successNotification.className =
+          "quote-notification success-notification";
+        successNotification.innerHTML = `
+                <div class="notification-content">
+                    <div class="notification-icon success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="notification-text">
+                        <div class="notification-title">Quote Request Submitted!</div>
+                        <div class="notification-message">
+                            Thank you <strong>${data.name}</strong>! Your request for <strong>${data.product}</strong> has been received.
+                            <br>We'll contact you at <strong>${data.email}</strong> within 24 hours.
+                        </div>
+                    </div>
+                    <button class="notification-close" onclick="closeNotification(this)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="notification-progress success-progress"></div>
+            `;
+
+        showNotification(successNotification);
+
+        // Add confetti effect
+        createConfettiEffect();
+
+        // Reset button after delay
+        setTimeout(() => {
+          submitBtn.style.background =
+            "linear-gradient(135deg, #3b82f6, #1d4ed8)";
+          submitBtn.innerHTML = `
+                    <i class="fas fa-paper-plane"></i>
+                    Submit Quote Request
+                `;
+        }, 3000);
+      }
+
+      function showNotification(notification) {
+        document.body.appendChild(notification);
+
+        // Trigger animation
+        setTimeout(() => {
+          notification.classList.add("show");
+        }, 10);
+
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+          if (notification.parentNode) {
+            closeNotification(
+              notification.querySelector(".notification-close")
+            );
+          }
+        }, 5000);
+      }
+
+      function closeNotification(closeBtn) {
+        const notification = closeBtn.closest(".quote-notification");
+        notification.classList.add("hide");
+
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 300);
+      }
+
+      function createConfettiEffect() {
+        const colors = [
+          "#3b82f6",
+          "#f97316",
+          "#10b981",
+          "#ef4444",
+          "#8b5cf6",
+          "#f59e0b",
+        ];
+        const confettiContainer = document.createElement("div");
+        confettiContainer.className = "confetti-container";
+        confettiContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 10001;
+            `;
+
+        document.body.appendChild(confettiContainer);
+
+        // Create confetti pieces
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti-piece";
+          confetti.style.cssText = `
+                    position: absolute;
+                    width: ${Math.random() * 10 + 5}px;
+                    height: ${Math.random() * 10 + 5}px;
+                    background: ${
+                      colors[Math.floor(Math.random() * colors.length)]
+                    };
+                    left: ${Math.random() * 100}%;
+                    top: -10px;
+                    border-radius: ${Math.random() > 0.5 ? "50%" : "0"};
+                    animation: confettiFall ${
+                      Math.random() * 3 + 2
+                    }s linear forwards;
+                    transform: rotate(${Math.random() * 360}deg);
+                `;
+
+          confettiContainer.appendChild(confetti);
+        }
+
+        // Add confetti animation if not already added
+        if (!document.querySelector("#confettiStyles")) {
+          const style = document.createElement("style");
+          style.id = "confettiStyles";
+          style.textContent = `
+                    @keyframes confettiFall {
+                        0% {
+                            transform: translateY(-10px) rotate(0deg);
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: translateY(100vh) rotate(720deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+          document.head.appendChild(style);
+        }
+
+        // Remove confetti container after animation
+        setTimeout(() => {
+          if (confettiContainer.parentNode) {
+            confettiContainer.parentNode.removeChild(confettiContainer);
+          }
+        }, 5000);
+      }
+
+      function shrimpImageClick() {
+        const image = document.querySelector(".hero-image");
+        image.style.transform = "scale(1.2) rotate(360deg)";
+        image.style.boxShadow = "0 30px 60px rgba(59, 130, 246, 0.5)";
+        setTimeout(() => {
+          image.style.transform = "scale(1) rotate(0deg)";
+          image.style.boxShadow = "0 20px 40px rgba(59, 130, 246, 0.3)";
+        }, 800);
+      }
+
+      function featureClick(feature) {
+        const messages = {
+          quality:
+            "Our quality standards exceed industry benchmarks with 99.8% quality rate!",
+          fresh:
+            "From ocean to table in less than 24 hours with temperature-controlled logistics!",
+          sustainable:
+            "Protecting oceans while delivering excellence - 100% MSC certified!",
+          processing:
+            "ISO certified facilities with HACCP compliance ensure perfect processing!",
+          global: "Serving 50+ countries worldwide with 24/7 customer support!",
+          innovation:
+            "25+ years of R&D with 15 patents driving industry innovation!",
+        };
+        alert(messages[feature]);
+      }
+
+      function learnMoreClick() {
+        event.preventDefault();
+        alert(
+          "Discover more about SIGMA's commitment to excellence and sustainability!"
+        );
+      }
+
+      function productClick(product) {
+        const messages = {
+          hoso: "Raw Head On Shell On Vannamei Shrimp: Whole shrimp with head and shell intact, ideal for authentic seafood presentations and traditional cooking methods. Block frozen format available in sizes 20/30 to 80/100 count per pound.",
+          pdto: "Raw Peeled & Deveined Tail On Vannamei Shrimp: Elegant presentation with tail on, perfect for upscale dining and special occasions with convenient preparation. Available in both IQF and Block frozen formats, sizes 16/20 to 61/70.",
+          pd: "Raw Peeled & Deveined Tail Off Vannamei Shrimp: Ready-to-cook peeled and deveined shrimp with tail removed, convenient for quick meal preparation and versatile cooking. Premium IQF quality with sizes from 21/25 to 71/90 count per pound.",
+          hlso: "Raw Headless Shell On EZ-peel Vannamei Shrimp: Premium headless shell-on shrimp with easy-peel feature, perfect for grilling and convenient shell removal. Available in IQF format with sizes ranging from 16/20 to 100/200 count per pound.",
+          butterfly:
+            "Butterfly Vannamei Shrimp: Expertly butterflied shrimp with elegant presentation, perfect for tempura, breading, and premium culinary applications. IQF premium format available in sizes 21/25 to 41/50 count per pound.",
+          "tiger-hoso":
+            "Raw Head On Shell On Black Tiger Shrimp: Premium black tiger shrimp with distinctive stripes, head and shell intact for maximum flavor and authentic presentation. Block frozen format available in sizes 8/12 to 40/50 count per pound.",
+          "tiger-pdto":
+            "Raw Peeled & Deveined Tail On Black Tiger Shrimp: Luxurious black tiger shrimp with tail on, perfect for gourmet presentations and fine dining experiences. Available in both IQF and Block frozen formats, sizes 10/15 to 31/40.",
+          "tiger-pd":
+            "Raw Peeled & Deveined Tail Off Black Tiger Shrimp: Ready-to-cook black tiger shrimp with superior texture and flavor, ideal for professional kitchens and culinary excellence. Premium IQF quality with sizes from 13/15 to 36/40 count per pound.",
+          "tiger-hlso":
+            "Raw Headless Shell On Black Tiger Shrimp: Premium headless black tiger shrimp with shell protection, maintaining natural moisture and distinctive tiger stripe appearance. Available in IQF format with sizes ranging from 8/12 to 50/60 count per pound.",
+          "tiger-butterfly":
+            "Butterfly Black Tiger Shrimp: Expertly butterflied black tiger shrimp showcasing the distinctive striped pattern, perfect for tempura and premium preparations. IQF premium format available in sizes 16/20 to 26/30 count per pound.",
+        };
+        alert(messages[product]);
+      }
+
+      function storyClick(story) {
+        const messages = {
+          excellence:
+            "Excellence & Quality: SIGMA maintains the highest quality standards with stringent quality control processes. Our commitment to sustainable practices ensures both exceptional taste and environmental responsibility.",
+          global:
+            "Global Reach: We export to USA, EU, China, Middle East, and numerous other countries. Our international presence reflects our ability to meet diverse market demands while maintaining excellence.",
+          waters:
+            "Premium Waters: Our 1500-acre farming operations across Andhra Pradesh utilize the pristine waters of India's eastern coast, ensuring the finest quality shrimp from source to processing.",
+          processing:
+            "State-of-the-Art Processing: Located in Peddapuram, our modern processing plant's proximity to farming operations guarantees maximum freshness. Our dedicated team ensures top-quality products for global markets.",
+        };
+        alert(messages[story]);
+      }
+
+      function serviceClick(service) {
+        const messages = {
+          processing:
+            "PROCESSING AND EXPORT: Sigma Seafoods is a leading exporter of shrimp from India, with vertically integrated infrastructure. Our state-of-the-art processing facilities ensure the highest quality standards from farm to export.",
+          supply:
+            "SUPPLY SOLUTIONS: Sigma Seafoods manages comprehensive shrimp Marketing and Distribution networks. We provide end-to-end supply chain solutions to meet global market demands efficiently.",
+        };
+        alert(messages[service]);
+      }
+
+      function modelClick(model) {
+        const messages = {
+          traceable:
+            "TRACEABLE: We ensure complete traceability from farm to fork with our comprehensive supply chain tracking system. Our digital documentation system provides real-time monitoring and complete transparency throughout the entire process.",
+          sustainable:
+            "SUSTAINABLE: Our shrimp farming practices have zero environmental impact. We use eco-friendly farming methods and focus on resource conservation to ensure sustainable seafood production for future generations.",
+          ethical:
+            "ETHICAL: We follow strict ethical practices including fair labor standards, community development initiatives, and transparent operations. Our commitment to ethical business practices extends throughout our entire supply chain.",
+        };
+        alert(messages[model]);
+      }
+
+      function brandClick(brand) {
+        const messages = {
+          "sigma-lite":
+            "SIGMA LITE: Our premium light processing line offering exceptional quality shrimp products with optimized processing techniques for superior taste and texture.",
+          breeze:
+            "BREEZE: Fresh and natural shrimp products that capture the essence of ocean freshness with gentle processing methods and sustainable sourcing.",
+          "sigma-choice":
+            "SIGMA CHOICE: Our flagship premium brand representing the finest selection of shrimp products with uncompromising quality standards and gourmet presentation.",
+          "neo-shrimp":
+            "NEO SHRIMP: Innovation meets tradition in our modern shrimp processing line, featuring cutting-edge techniques for next-generation seafood excellence.",
+        };
+        alert(messages[brand]);
+      }
+
+      function certificateClick(certificate) {
+        const messages = {
+          haccp:
+            "HACCP: Hazard Analysis and Critical Control Points certification ensures food safety through systematic preventive approach to food safety from biological, chemical, and physical hazards.",
+          iso22000:
+            "ISO 22000: International standard for food safety management systems, ensuring safe food supply chains from farm to fork with comprehensive quality control.",
+          brc: "BRC: British Retail Consortium Global Standard for Food Safety, providing framework to manage product safety, integrity, legality and quality.",
+          halal:
+            "HALAL: Certified halal processing ensuring compliance with Islamic dietary laws and requirements for Muslim consumers worldwide.",
+          fda: "FDA: U.S. Food and Drug Administration approval ensuring our products meet strict American food safety and quality standards for export.",
+          eu: "EU APPROVED: European Union certification allowing export to all EU member countries with compliance to European food safety regulations.",
+          organic:
+            "ORGANIC: Certified organic processing ensuring products are free from synthetic pesticides, herbicides, and artificial additives.",
+        };
+        alert(messages[certificate]);
+      }
+
+      function worldMapClick() {
+        alert(
+          "Our Global Markets: SIGMA Seafoods exports premium shrimp to 50+ countries worldwide including USA, EU, China, Middle East, and many other international markets. We maintain strong customer relationships with 24/7 support and commitment to quality."
+        );
+      }
+
+      function marketStatClick(stat) {
+        const messages = {
+          countries:
+            "50+ Countries: We export our premium shrimp products to over 50 countries worldwide, including major markets in USA, European Union, China, Middle East, and many other international destinations.",
+          clients:
+            "200+ Global Clients: Our extensive client base includes major importers, distributors, and retailers across the globe who trust SIGMA Seafoods for consistent quality and reliable supply.",
+          support:
+            "24/7 Customer Support: We provide round-the-clock customer service to ensure seamless communication and support for our international clients across different time zones.",
+        };
+        alert(messages[stat]);
+      }
+
+      function socialClick(platform) {
+        event.preventDefault();
+        const messages = {
+          facebook:
+            "Follow us on Facebook for the latest updates and seafood insights!",
+          twitter:
+            "Connect with us on Twitter for industry news and company updates!",
+          linkedin:
+            "Join our professional network on LinkedIn for business opportunities!",
+          instagram:
+            "See our premium seafood products on Instagram with beautiful visuals!",
+        };
+        alert(messages[platform]);
+      }
+
+      function footerNavClick(section) {
+        event.preventDefault();
+        const messages = {
+          home: "Navigating to Home - Discover SIGMA Seafoods premium products and services",
+          about:
+            "Learn About Us - Our journey from 2020 to becoming India's fastest growing seafood company",
+          operations:
+            "Our Operations - From 1500 acres of farming to state-of-the-art processing facilities",
+          products:
+            "Our Products - Premium Vannamei and Black Tiger shrimp in various formats",
+          markets:
+            "Global Markets - Serving 50+ countries with premium seafood products",
+          media:
+            "Media Center - Latest news, press releases, and company updates",
+          contact:
+            "Contact Us - Get in touch for quotes, partnerships, and inquiries",
+          "processing-plant":
+            "Our Processing Plant - State-of-the-art facility in Peddapuram, Andhra Pradesh",
+          vision:
+            "Our Vision - To be the global leader in sustainable seafood excellence",
+          mission:
+            "Our Mission - Delivering premium quality seafood while protecting our oceans",
+          brands:
+            "Our Brands - SIGMA LITE, BREEZE, SIGMA CHOICE, and NEO SHRIMP",
+          certifications:
+            "Our Certifications - HACCP, ISO 22000, BRC, HALAL, FDA, EU Approved, and Organic",
+        };
+        alert(messages[section]);
+      }
+
+      function footerBottomClick(link) {
+        event.preventDefault();
+        const messages = {
+          privacy:
+            "Privacy Policy - We protect your data and respect your privacy with industry-leading security measures",
+          terms:
+            "Terms of Service - Our commitment to fair business practices and transparent service agreements",
+        };
+        alert(messages[link]);
+      }
+
+      function socialClick(platform) {
+        event.preventDefault();
+        const messages = {
+          facebook:
+            "Follow us on Facebook for the latest updates and seafood insights!",
+          twitter:
+            "Connect with us on Twitter for industry news and company updates!",
+          linkedin:
+            "Join our professional network on LinkedIn for business opportunities!",
+          instagram:
+            "See our premium seafood products on Instagram with beautiful visuals!",
+        };
+        alert(messages[platform]);
+      }
+
+      function footerNavClick(section) {
+        event.preventDefault();
+        const messages = {
+          home: "Navigating to Home - Discover SIGMA Seafoods premium products and services",
+          about:
+            "Learn About Us - Our journey from 2020 to becoming India's fastest growing seafood company",
+          operations:
+            "Our Operations - From 1500 acres of farming to state-of-the-art processing facilities",
+          products:
+            "Our Products - Premium Vannamei and Black Tiger shrimp in various formats",
+          markets:
+            "Global Markets - Serving 50+ countries with premium seafood products",
+          media:
+            "Media Center - Latest news, press releases, and company updates",
+          contact:
+            "Contact Us - Get in touch for quotes, partnerships, and inquiries",
+          "processing-plant":
+            "Our Processing Plant - State-of-the-art facility in Peddapuram, Andhra Pradesh",
+          vision:
+            "Our Vision - To be the global leader in sustainable seafood excellence",
+          mission:
+            "Our Mission - Delivering premium quality seafood while protecting our oceans",
+          brands:
+            "Our Brands - SIGMA LITE, BREEZE, SIGMA CHOICE, and NEO SHRIMP",
+          certifications:
+            "Our Certifications - HACCP, ISO 22000, BRC, HALAL, FDA, EU Approved, and Organic",
+        };
+        alert(messages[section]);
+      }
+
+      function footerBottomClick(link) {
+        event.preventDefault();
+        const messages = {
+          privacy:
+            "Privacy Policy - We protect your data and respect your privacy with industry-leading security measures",
+          terms:
+            "Terms of Service - Our commitment to fair business practices and transparent service agreements",
+        };
+        alert(messages[link]);
+      }
+
+      // Scroll Effects
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector(".header");
+        if (window.scrollY > 100) {
+          header.style.background = "rgba(15, 23, 42, 0.95)";
+          header.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.3)";
+        } else {
+          header.style.background = "rgba(15, 23, 42, 0.9)";
+          header.style.boxShadow = "none";
+        }
+      });
+
+      // Parallax Effect
+      document.addEventListener("mousemove", (e) => {
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+
+        const floatingElements = document.querySelectorAll(".floating-element");
+        floatingElements.forEach((element, index) => {
+          const speed = (index + 1) * 0.5;
+          element.style.transform = `translate(${mouseX * speed * 10}px, ${
+            mouseY * speed * 10
+          }px)`;
+        });
+      });
+
+      // Water Drop Wave Effect
+      function createWaterDropEffect(x, y) {
+        // Create ripple container
+        const ripple = document.createElement("div");
+        ripple.className = "water-ripple";
+
+        // Position at click coordinates
+        ripple.style.left = x + "px";
+        ripple.style.top = y + "px";
+
+        // Add to body
+        document.body.appendChild(ripple);
+
+        // Create multiple concentric waves
+        for (let i = 0; i < 3; i++) {
+          const wave = document.createElement("div");
+          wave.className = "ripple-wave";
+          wave.style.animationDelay = i * 0.2 + "s";
+          ripple.appendChild(wave);
+        }
+
+        // Create water droplets
+        for (let i = 0; i < 8; i++) {
+          const droplet = document.createElement("div");
+          droplet.className = "water-droplet";
+
+          const angle = i * 45 * (Math.PI / 180);
+          const distance = 50 + Math.random() * 30;
+          const dropX = Math.cos(angle) * distance;
+          const dropY = Math.sin(angle) * distance;
+
+          droplet.style.setProperty("--drop-x", dropX + "px");
+          droplet.style.setProperty("--drop-y", dropY + "px");
+          droplet.style.animationDelay = 0.1 + Math.random() * 0.3 + "s";
+
+          ripple.appendChild(droplet);
+        }
+
+        // Remove after animation
+        setTimeout(() => {
+          if (ripple.parentNode) {
+            ripple.parentNode.removeChild(ripple);
+          }
+        }, 2000);
+      }
+
+      // Enhanced click effect for elements
+      function addWaterClickEffect(element) {
+        element.addEventListener("click", function (e) {
+          // Create water drop effect at click position
+          createWaterDropEffect(e.clientX, e.clientY);
+
+          // Add temporary class for element animation
+          this.classList.add("water-clicked");
+          setTimeout(() => {
+            this.classList.remove("water-clicked");
+          }, 600);
+        });
+      }
+
+      // Smoke Particles Generation
+      function createSmokeParticles() {
+        const particlesContainer = document.getElementById("smokeParticles");
+        const particleCount = 20;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+
+          // Random positioning
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 8 + "s";
+          particle.style.animationDuration = Math.random() * 4 + 6 + "s";
+
+          // Random size variation
+          const size = Math.random() * 3 + 2;
+          particle.style.width = size + "px";
+          particle.style.height = size + "px";
+
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Simple title setup (no animation)
+      function setupHeroTitle() {
+        const titleElement = document.getElementById("heroTitle");
+        titleElement.textContent = "PREMIUM SEAFOOD";
+      }
+
+      // Loading Animation
+      window.addEventListener("load", () => {
+        // Create smoke particles
+        createSmokeParticles();
+
+        // Setup hero title (no animation)
+        setupHeroTitle();
+
+        const elements = document.querySelectorAll(
+          ".feature-card, .btn, .nav-link"
+        );
+        elements.forEach((element, index) => {
+          element.style.opacity = "0";
+          element.style.transform = "translateY(30px)";
+
+          setTimeout(() => {
+            element.style.transition = "all 0.6s ease";
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0)";
+          }, index * 100);
+        });
+
+        // Add water click effects to interactive elements
+        const clickableElements = document.querySelectorAll(`
+                .btn, .logo-icon, .hero-title, .hero-image, .nav-link,
+                .product-card, .feature-card, .story-card, .service-card,
+                .model-card, .brand-card, .certificate-card, .stat-item,
+                .world-map-container, .contact-item, .social-icon,
+                .footer-link, .footer-logo
+            `);
+
+        clickableElements.forEach((element) => {
+          element.classList.add("clickable-element");
+          addWaterClickEffect(element);
+        });
+      });
+
+      // Keyboard Shortcuts
+      document.addEventListener("keydown", (e) => {
+        switch (e.key.toLowerCase()) {
+          case "escape":
+            closeQuotePopup();
+            break;
+          case " ":
+            e.preventDefault();
+            titleClick();
+            break;
+          case "l":
+            logoClick();
+            break;
+          case "m":
+            toggleMenu();
+            break;
+          case "e":
+            exploreClick();
+            break;
+          case "q":
+            showQuotePopup();
+            break;
+        }
+      });
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'98a3549ef22b17a7',t:'MTc1OTczNDUzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>

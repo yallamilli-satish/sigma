@@ -1,0 +1,20 @@
+.herobg{
+
+/* background-position: center; */
+/* background-size: fit; */
+}
+.herobg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: url("https://www.canva.com/design/DAG0-3QxD-Q/uJRofEMSD2D28AAVC-4ZjQ/edit?utm_content=DAG0-3QxD-Q&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"); */
+    background-image: url(images/herobg.png
+    );
+    background-size: fit;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: 1;
+  }
